@@ -536,7 +536,8 @@ textarea{resize:vertical}
     <p style="font-size:13px;color:var(--g600);line-height:1.6">Envía tus archivos junto con el PDF a <strong>administracion@aserficapital.com</strong></p>
   </div>
   <div class="info-box">
-    📧 <strong>Próximos pasos:</strong> Descarga tu checklist en PDF y envía tus documentos a <strong>administracion@aserficapital.com</strong>. Un asesor se pondrá en contacto contigo en 1–2 días hábiles.
+    📁 <strong>Sube tus documentos a Google Drive:</strong> En breve recibirás un correo de ASERFI Capital con el enlace a tu carpeta personal de Drive donde podrás subir todos tus archivos de forma segura.<br><br>
+    📧 También puedes enviarlos a <strong>administracion@aserficapital.com</strong>. Un asesor te contactará en 1–2 días hábiles.
   </div>
   <div class="act-row">
     <button class="btn btn-p" onclick="downloadPDF()">⬇ Descargar checklist PDF</button>
@@ -559,31 +560,175 @@ textarea{resize:vertical}
 // ── CHECKLISTS ─────────────────────────────────────────────────────────────
 const CL={
   simple_moral:{title:"Crédito Simple — Persona Moral",sections:[
-    {title:"Persona Moral (Empresa Acreditada)",items:["Acta constitutiva con boleta de inscripción al RPPC","Actas de asamblea ordinarias y extraordinarias con boleta de inscripción al RPPC","Reporte de Buró de Crédito","EEFF 2022, 2023 y 2024 con relaciones analíticas","EEFF parcial 2025 con relaciones analíticas","Declaración anual, acuse y anexos 2022, 2023 y 2024","Opinión del cumplimiento de Obligaciones Fiscales","Flujo de efectivo proyectado","Constancia de Situación Fiscal","CV con relación de proyectos ejecutados","Estados de cuenta bancarios (últimos 12 meses)"]},
-    {title:"Personas Físicas (Accionistas)",items:["Reporte de buró de crédito","Constancia de Situación Fiscal","Relación patrimonial","Estados de cuenta bancarios (últimos 12 meses)"]},
-    {title:"De la garantía hipotecaria",opt:true,items:["Título de propiedad y/o escritura de compraventa","Avalúo del inmueble","Boleta de pago del predial","Cédula y plano catastral","Fotos del inmueble","Constancia no adeudo de agua potable"]}
+    {title:"Persona Moral (Empresa Acreditada)",items:[
+      "Acta constitutiva con boleta de inscripción al RPPC",
+      "Actas de asamblea ordinarias y extraordinarias con boleta de inscripción al RPPC",
+      "Poder notarial del representante legal",
+      "Identificación oficial vigente del representante legal",
+      "Constancia de Situación Fiscal (actualizada)",
+      "Reporte de Buró de Crédito (empresa)",
+      "Estados Financieros 2023, 2024 y 2025 con relaciones analíticas",
+      "Estados Financieros parciales 2026 con relaciones analíticas",
+      "Declaración anual, acuse y anexos 2023, 2024 y 2025",
+      "Opinión del cumplimiento de Obligaciones Fiscales",
+      "Flujo de efectivo proyectado",
+      "CV empresarial con relación de proyectos ejecutados",
+      "Estados de cuenta bancarios (últimos 12 meses)"
+    ]},
+    {title:"Personas Físicas (Accionistas / Avales)",items:[
+      "Identificación oficial vigente",
+      "Constancia de Situación Fiscal",
+      "Reporte de Buró de Crédito",
+      "Relación patrimonial",
+      "Estados de cuenta bancarios (últimos 12 meses)"
+    ]},
+    {title:"De la Garantía Hipotecaria",opt:true,items:[
+      "Título de propiedad y/o escritura de compraventa del inmueble",
+      "Avalúo del inmueble",
+      "Boleta de pago del predial",
+      "Cédula y plano catastral",
+      "Fotografías del inmueble",
+      "Constancia de no adeudo de agua potable"
+    ]}
   ]},
   simple_fisica:{title:"Crédito Simple — Persona Física",sections:[
-    {title:"Documentación General",items:["Identificación oficial vigente","Comprobante de domicilio (no mayor a 3 meses)","Acta de nacimiento (certificada)","Constancia de situación fiscal (actualizada)","Acta de matrimonio (certificada, en caso de aplicar)","Relación patrimonial","Reporte de buró de crédito","Estados de cuenta bancarios (últimos 12 meses)"]},
-    {title:"De la garantía hipotecaria",opt:true,items:["Avalúo de bienes (vigencia máxima 2 años)","Escrituras de inmueble (Certificado de propiedad)","Boleta de agua vigente","Fotos del inmueble","Cédula catastral","Plano catastral","Escritura de inmueble alterno para garantía"]}
+    {title:"Documentación General",items:[
+      "Identificación oficial vigente",
+      "Comprobante de domicilio (no mayor a 3 meses)",
+      "Acta de nacimiento (certificada)",
+      "Constancia de Situación Fiscal (actualizada)",
+      "Acta de matrimonio (certificada, en caso de aplicar)",
+      "Relación patrimonial",
+      "Reporte de Buró de Crédito",
+      "Estados de cuenta bancarios (últimos 12 meses)",
+      "Declaración Anual 2023, 2024 y 2025",
+      "Flujo de efectivo proyectado"
+    ]},
+    {title:"De la Garantía Hipotecaria",opt:true,items:[
+      "Título de propiedad y/o escritura de compraventa del inmueble",
+      "Avalúo del inmueble (vigencia máxima 2 años)",
+      "Boleta de pago del predial",
+      "Cédula y plano catastral",
+      "Fotografías del inmueble",
+      "Constancia de no adeudo de agua potable"
+    ]}
   ]},
   puente_moral:{title:"Crédito Puente — Persona Moral",sections:[
-    {title:"Persona Moral (Empresa Acreditada)",items:["Acta constitutiva con boleta de inscripción al RPPC","Actas de asamblea ordinarias y extraordinarias con boleta de inscripción al RPPC","Reporte de Buró de Crédito","EEFF 2022, 2023 y 2024 con relaciones analíticas","EEFF parcial 2025 con relaciones analíticas","Declaración anual, acuse y anexos 2022, 2023 y 2024","Opinión del cumplimiento de Obligaciones Fiscales","Flujo de efectivo proyectado del proyecto","Constancia de Situación Fiscal","CV con relación de proyectos inmobiliarios ejecutados","Estados de cuenta bancarios (últimos 12 meses)"]},
-    {title:"Personas Físicas (Accionistas)",items:["Reporte de buró de crédito","Constancia de Situación Fiscal","Relación patrimonial","Estados de cuenta bancarios (últimos 12 meses)"]},
-    {title:"Del proyecto inmobiliario",items:["Permisos de construcción y uso de suelo vigentes","Proyecto ejecutivo o estudio de factibilidad","Preventas o cartas compromiso (mínimo 30%)","Presupuesto de obra detallado","Título de propiedad del terreno / escritura","Avalúo del inmueble o terreno","Boleta de pago del predial","Cédula y plano catastral","Fotos del terreno o avance de obra","Constancia no adeudo de agua potable"]}
+    {title:"Persona Moral (Empresa Acreditada)",items:[
+      "Acta constitutiva con boleta de inscripción al RPPC",
+      "Actas de asamblea ordinarias y extraordinarias con boleta de inscripción al RPPC",
+      "Poder notarial del representante legal",
+      "Identificación oficial vigente del representante legal",
+      "Constancia de Situación Fiscal (actualizada)",
+      "Reporte de Buró de Crédito (empresa)",
+      "Estados Financieros 2023, 2024 y 2025 con relaciones analíticas",
+      "Estados Financieros parciales 2026 con relaciones analíticas",
+      "Declaración anual, acuse y anexos 2023, 2024 y 2025",
+      "Opinión del cumplimiento de Obligaciones Fiscales",
+      "Flujo de efectivo proyectado del proyecto",
+      "CV empresarial con relación de proyectos ejecutados",
+      "Licencia de construcción o permisos municipales",
+      "Proyecto ejecutivo / planos arquitectónicos",
+      "Presupuesto de obra",
+      "Estados de cuenta bancarios (últimos 12 meses)"
+    ]},
+    {title:"Personas Físicas (Accionistas / Avales)",items:[
+      "Identificación oficial vigente",
+      "Constancia de Situación Fiscal",
+      "Reporte de Buró de Crédito",
+      "Relación patrimonial",
+      "Estados de cuenta bancarios (últimos 12 meses)"
+    ]},
+    {title:"Del Inmueble / Proyecto",items:[
+      "Escritura de propiedad del terreno con inscripción al RPPC",
+      "Avalúo del terreno (vigencia máxima 2 años)",
+      "Boleta de pago del predial",
+      "Cédula y plano catastral",
+      "Fotografías del terreno / avance de obra",
+      "Constancia de no adeudo de agua potable",
+      "Estudio de mercado o preventas (en su caso)"
+    ]}
   ]},
   puente_fisica:{title:"Crédito Puente — Persona Física",sections:[
-    {title:"Documentación General",items:["Identificación oficial vigente","Comprobante de domicilio (no mayor a 3 meses)","Acta de nacimiento (certificada)","Constancia de situación fiscal (actualizada)","Acta de matrimonio (certificada, en caso de aplicar)","Relación patrimonial","Reporte de buró de crédito","Estados de cuenta bancarios (últimos 12 meses)"]},
-    {title:"Del proyecto inmobiliario",items:["Permisos de construcción y uso de suelo vigentes","Proyecto ejecutivo o estudio de factibilidad","Preventas o cartas compromiso de compradores","Presupuesto de obra detallado","Título de propiedad del terreno / escritura","Avalúo del inmueble o terreno","Boleta de pago del predial","Cédula y plano catastral","Fotos del terreno o avance de obra","Constancia no adeudo de agua potable"]}
+    {title:"Documentación General",items:[
+      "Identificación oficial vigente",
+      "Comprobante de domicilio (no mayor a 3 meses)",
+      "Acta de nacimiento (certificada)",
+      "Constancia de Situación Fiscal (actualizada)",
+      "Acta de matrimonio (certificada, en caso de aplicar)",
+      "Relación patrimonial",
+      "Reporte de Buró de Crédito",
+      "Estados de cuenta bancarios (últimos 12 meses)",
+      "Declaración Anual 2023, 2024 y 2025",
+      "Flujo de efectivo proyectado del proyecto"
+    ]},
+    {title:"Del Inmueble / Proyecto",items:[
+      "Escritura de propiedad del terreno con inscripción al RPPC",
+      "Licencia de construcción o permisos municipales",
+      "Proyecto ejecutivo / planos arquitectónicos",
+      "Presupuesto de obra",
+      "Avalúo del terreno (vigencia máxima 2 años)",
+      "Boleta de pago del predial",
+      "Cédula y plano catastral",
+      "Fotografías del terreno / avance de obra",
+      "Constancia de no adeudo de agua potable",
+      "Estudio de mercado o preventas (en su caso)"
+    ]}
   ]},
   arrendamiento_moral:{title:"Arrendamiento — Persona Moral",sections:[
-    {title:"Persona Moral (Empresa Acreditada)",items:["Acta constitutiva con boleta de inscripción al RPPC","Actas de asamblea ordinarias y extraordinarias con boleta de inscripción al RPPC","Reporte de Buró de Crédito","EEFF 2023, 2024 y 2025 con relaciones analíticas","EEFF parcial 2026 con relaciones analíticas","Declaración anual, acuse y anexos 2023, 2024 y 2025","Opinión del cumplimiento de Obligaciones Fiscales","CV con relación de proyectos ejecutados","Constancia de Situación Fiscal","Estados de cuenta bancarios (últimos 12 meses)"]},
-    {title:"Persona Física (Un accionista de la empresa)",items:["Identificación oficial","Reporte de buró de crédito","Constancia de Situación Fiscal actualizada","Estados de cuenta según reporte de buró de crédito"]},
-    {title:"Del equipo a arrendar",items:["Descripción técnica del equipo","Fotografías del equipo","Póliza de seguro del equipo (daños, robo, etc.)"]}
+    {title:"Persona Moral (Empresa Arrendataria)",items:[
+      "Acta constitutiva con boleta de inscripción al RPPC",
+      "Actas de asamblea ordinarias y extraordinarias con boleta de inscripción al RPPC",
+      "Poder notarial del representante legal",
+      "Identificación oficial vigente del representante legal",
+      "Comprobante de domicilio fiscal (no mayor a 3 meses)",
+      "Constancia de Situación Fiscal (actualizada)",
+      "Reporte de Buró de Crédito (empresa)",
+      "Estados Financieros 2023, 2024 y 2025 con relaciones analíticas",
+      "Estados Financieros parciales 2026 con relaciones analíticas",
+      "Declaración anual, acuse y anexos 2023, 2024 y 2025",
+      "Opinión del cumplimiento de Obligaciones Fiscales",
+      "CV empresarial con relación de proyectos ejecutados",
+      "Estados de cuenta bancarios (últimos 12 meses)"
+    ]},
+    {title:"Persona Física (Accionista / Aval)",items:[
+      "Identificación oficial vigente",
+      "Constancia de Situación Fiscal (actualizada)",
+      "Reporte de Buró de Crédito",
+      "Estados de cuenta bancarios (últimos 12 meses)"
+    ]},
+    {title:"Del Equipo a Arrendar",items:[
+      "Descripción técnica del equipo",
+      "Fotografías del equipo",
+      "Cotización / factura pro forma del equipo",
+      "Póliza de seguro del equipo (daños, robo, etc.) con endoso a ASF Peninsular S.A.P.I. de C.V."
+    ]}
   ]},
   arrendamiento_fisica:{title:"Arrendamiento — Persona Física",sections:[
-    {title:"Documentación General",items:["Identificación oficial vigente","Comprobante de domicilio (no mayor a 3 meses)","Acta de nacimiento (certificada)","Constancia de situación fiscal (actualizada)","Acta de matrimonio (certificada, en caso de aplicar)","Relación patrimonial","Reporte de buró de crédito","Estados de cuenta bancarios (últimos 12 meses)"]},
-    {title:"Del equipo a arrendar",items:["Descripción técnica del equipo","Fotografías del equipo","Póliza de seguro del equipo (daños, robo, etc.)"]}
+    {title:"Documentación General",items:[
+      "Identificación oficial vigente",
+      "Comprobante de domicilio (no mayor a 3 meses)",
+      "Acta de nacimiento (certificada)",
+      "Constancia de Situación Fiscal (actualizada)",
+      "Acta de matrimonio (certificada, en caso de aplicar)",
+      "Relación patrimonial",
+      "Reporte de Buró de Crédito",
+      "Estados de cuenta bancarios (últimos 12 meses)",
+      "Declaración Anual 2023, 2024 y 2025"
+    ]},
+    {title:"Obligado Solidario / Fuente de Pago",items:[
+      "Identificación oficial vigente",
+      "Comprobante de domicilio (no mayor a 3 meses)",
+      "Acta de nacimiento (certificada)",
+      "Constancia de Situación Fiscal (actualizada)",
+      "Reporte de Buró de Crédito",
+      "Estados de cuenta bancarios (últimos 12 meses)"
+    ]},
+    {title:"Del Equipo a Arrendar",items:[
+      "Descripción técnica del equipo",
+      "Fotografías del equipo",
+      "Póliza de seguro del equipo (daños, robo, etc.) con endoso a ASF Peninsular S.A.P.I. de C.V."
+    ]}
   ]}
 };
 
@@ -736,12 +881,12 @@ async function submitForm(){
   try {
     const fd = new FormData();
     Object.entries(formData).forEach(([k,v]) => fd.append(k, v));
-    await fetch('https://script.google.com/macros/s/AKfycbyAskurVkZD8V7WpEKtfe4O0kJQ-hWWcQ3zVfE92uCfTWvavpVLoHYPKZmyR1qpRgSN/exec',{
+    const resp = await fetch('https://script.google.com/macros/s/AKfycbyAskurVkZD8V7WpEKtfe4O0kJQ-hWWcQ3zVfE92uCfTWvavpVLoHYPKZmyR1qpRgSN/exec',{
       method:'POST',
       mode:'no-cors',
       body: fd
     });
-  } catch(e){ /* silent fail — still show checklist */ }
+  } catch(e){ /* silent fail */ }
 
   document.getElementById('sendingOverlay').classList.remove('show');
   buildChecklist(fondeo,persona);
