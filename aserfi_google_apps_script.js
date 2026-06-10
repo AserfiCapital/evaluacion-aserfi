@@ -1,5 +1,5 @@
 // ════════════════════════════════════════════════════════════════════
-//  ASERFI Capital — Google Apps Script
+//  index.html
 //  Panel de control de solicitudes
 //  
 //  INSTRUCCIONES DE INSTALACIÓN:
